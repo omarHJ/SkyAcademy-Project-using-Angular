@@ -1,0 +1,53 @@
+::selection {
+    background-color: #198754;
+    color: white;
+}
+.Card-1 {
+    background-color: rgb(245, 245, 245);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+}
+.view-profile-Button-p {
+    float: right;
+}
+
+.half-obacity {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.Card-2 {
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    width: 190px;
+}
+
+
+.home-third-div {
+    background-color: rgb(245, 245, 245);
+    margin: auto;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.home-third-div hr {
+    width: 95.5%;
+    margin: auto;
+}
+
+.card {
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);                           
+}
+
+
+@media (max-width: 768px) {
+    .Card-1 {
+        text-wrap: wrap;
+    }
+    .Card-3-header {
+        flex-direction: column;
+    }
+    .profile-container{
+        flex-direction: column;
+    }
+    .requests-container{
+        justify-content: center;
+    }
+}

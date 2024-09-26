@@ -1,0 +1,173 @@
+
+<app-navbar [isHomeBold]="isHomeBold"></app-navbar>  <!--Property Binding (One-Way)-->
+
+<main class="p-3 p-sm-0">
+  <br />
+  <!--Wellcome section-->
+  <div class="d-flex justify-content-between px-lg-5 py-2">
+    <h4>Welcome Back {{ name }}! Here are your latest updates</h4>    <!--Interpolation-->
+    <button class="btn btn-success px-4 px-lg-5 h-50">New Requests</button>
+  </div>
+  <br />
+  <!--Employee dashboard-->
+  <div class="d-flex justify-content-between profile-container px-0 px-md-2 px-lg-5">
+    <div class="d-flex flex-column rounded-5 Card-1 Card-1-profile-div mb-4 me-md-3">
+      <div class="d-flex pt-2 justify-content-between">
+        <div class="d-flex m-2">
+          <p style="place-content: center;">
+            <img src="../../assets/images/Screenshot 2024-09-01 150822.png" style="width: 60px; margin-left: 5px;">
+          </p>
+          <p style="padding: 0 10px ;">
+            <span class="fw-bold">Ahmad Azmi</span>  <br /><span class="half-obacity small"> Junior Accounting Officer</span>
+          </p>
+        </div>
+        <div class="view-profile-Button-p">
+          <button class="view-profile-Button btn btn-outline-success m-3 px-5 py-1" routerLink="profile">View Profiles</button>
+        </div>
+      </div>
+      <div class="d-flex text-nowrap" >
+        <div class="d-flex mx-3">
+          <p style="place-content: center;">
+            <span class="fa-solid fa-user pb-3 p-2 fs-2 mx-2 half-obacity"></span>
+          </p>
+          <p>
+            <span class="fw-bold">Reporting to:</span> <br /><span class="half-obacity small"> Salwa Assem</span>
+          </p>
+        </div>
+        <div class="d-flex">
+          <p style="place-content: center;">
+            <img class="p-2 fs-2 mx-2" src="../../assets/images/chart-mixed-svgrepo-com.png" style="width: 60px">
+          </p>
+          <p>
+            <span class="fw-bold">Corprate Level:</span> <br /><span class="half-obacity small"> Level 10</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex mb-4">
+      <div class="Card-2 d-flex justify-content-evenly bg-success rounded-5 text-white me-3 ml-2">
+        <div class="Card-2-left-section">
+          <p>
+            <img src="../../assets/images/Screenshot 2024-09-01 154244.png" width="70px">
+          </p>
+          <div style="width: 70px;">
+            <p style="text-wrap:wrap">
+              Vacation Requests
+            </p>
+          </div>
+        </div>
+        <p style="font-size: xxx-large; place-self: center">
+          10
+        </p>
+      </div>
+      <div class="Card-2 d-flex justify-content-evenly bg-success rounded-5 text-white">
+        <div class="Card-2-left-section">
+          <p>
+            <img src="../../assets/images/Screenshot 2024-09-01 154244.png" width="70px">
+          </p>
+          <div style="width: 70px;">
+            <p style="text-wrap:wrap" class="text-center">
+              Leaving Requests
+            </p>
+          </div>
+        </div>
+        <p style="font-size: xxx-large; place-self: center">
+          10
+        </p>
+      </div>
+    </div>
+  </div>
+  <br />
+  <br />
+  <!--Latest News Section with the images in slider-->
+  <h5 class="px-0 px-lg-5">Latest News:</h5>
+  <div id="carouselExampleCaptions" class="carousel slide mx-0 mx-md-2 mx-lg-5" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+        aria-label="Slide 1" aria-current="true"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"
+        class=""></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"
+        class=""></button>
+    </div>
+    <div class="carousel-inner">
+    @for(sliderPic of sliderPics; track sliderPic.id) {
+        <div class="carousel-item active" data-bs-interval="1500">
+          <img [src]="sliderPic.source">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>{{ sliderHead }}</h5> <!--Interpolation-->
+            <p>{{ sliderText }}</p> <!--Interpolation-->
+          </div>
+        </div>
+    }
+    </div>
+  </div>
+  <br />
+  <br />
+  <!--Section that displays the latest vacations requests-->
+  <div class="home-third-div rounded-5 mx-0 mx-lg-5 ">
+    <div class="Card-3-header d-flex justify-content-between">
+      <p class="px-3 pt-3">
+        <img src="../../assets/images/Screenshot 2024-09-01 154245.png" width="60px"> Vacations Requests
+      </p>
+      <div>
+        <form class="d-flex my-4 mx-3" style="place-items: center"> <!--Custom Pipe to highlight the search text-->
+          <input [(ngModel)]="searchTerm"              
+                 style="border: solid 1.5px gray;"
+                 id="searchInput"
+                 class="form-control rounded-5 me-2 " 
+                 type="search" 
+                 placeholder="Search..."
+                 aria-label="Search"
+                 name="Search">
+        </form>
+      </div>
+    </div>
+    <hr />   
+    <div class="fw-bold d-flex flex-row flex-wrap justify-content-center justify-content-lg-start text-center mt-3 ms-0 ms-lg-3">        
+      @for(vacationCard of vacationCards; track vacationCard.name) {
+        <div class="card mx-3 mt-2" style="width: 16rem;">
+          <div class="card-body">
+            <img [src]="vacationCard.imageUrl" style="width: 100px; filter: drop-shadow(2px 5px 4px)" />
+            
+            <h5 [innerHTML]="vacationCard.name | highlight: searchTerm"></h5>
+            
+            <p class="small text-start">
+              <span style="opacity: 0.7;">Submitted on:</span> <br />
+              <span [innerHTML]="vacationCard.submittedOn | highlight: searchTerm"></span> <br />
+              
+              <span style="opacity: 0.7;">Duration:</span> <br />
+              <span [innerHTML]="vacationCard.duration | highlight: searchTerm"></span> <br />
+              
+              <span style="opacity: 0.7;">Salary:</span> <br />
+              <span [innerHTML]="vacationCard.salary | highlight: searchTerm"></span>
+            </p>
+            
+            <p class="d-flex justify-content-between">
+              <button type="button" class="btn btn-outline-success py-0 px-4">Decline</button>
+              <button type="button" class="btn btn-success py-0 px-4">Approve</button>
+            </p>
+          </div>
+        </div>
+      } @empty {
+        <div class="text-center">
+          <p>No items available at the moment.</p>
+        </div>
+      }
+    </div>
+    
+    <div class="d-flex justify-content-end">
+      <span style="padding: 15px;" (mouseover)="viewRequests()" (mouseleave)="resetText()">
+          <a 
+          class="fw-bold text-success text-decoration-none" 
+          style="cursor: pointer"
+          routerLink="/vacations-requests">{{ viewMoreText }}</a>
+      </span>
+    </div>
+  </div>
+</main>
+<footer class="fw-bold text-center py-2">
+  <span class="fa-solid fa-copyright"></span>
+  {{ currentYear | date:'yyyy' }}             <!--Built-in Date Pipe-->
+  SkyAcademy
+</footer>

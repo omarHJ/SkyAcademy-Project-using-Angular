@@ -1,0 +1,56 @@
+{
+
+    "vacationHistoryCards":[
+        {
+            "id": 1,
+            "vacationType": "Annual Vacation",
+            "date": "2/3/2023 - 10/3/2023 ",
+            "days": " 8 Days",
+            "approvedBy": "Hazem Azmi"
+        },
+        {
+            "id": 2,
+            "vacationType": "Sick Vacation",
+            "date": "2/3/2023 - 10/3/2023 ",
+            "days": " 8 Days",
+            "approvedBy": "Hazem Azmi"
+        },
+        {
+            "id": 3,
+            "vacationType": "Annual Vacation",
+            "date": "2/3/2023 - 10/3/2023 ",
+            "days": " 8 Days",
+            "approvedBy": "Hazem Azmi"
+        },
+        {
+            "id": 4,
+            "vacationType": "Non Paid Vacation",
+            "date": "2/3/2023 - 10/3/2023 ",
+            "days": " 8 Days",
+            "approvedBy": "Hazem Azmi"
+        },
+        {
+            "id": 5,
+            "vacationType": "Annual Vacation",
+            "date": "2/3/2023 - 10/3/2023 ",
+            "days": " 8 Days",
+            "approvedBy": "Hazem Azmi"
+        },
+        {
+            "id": 6,
+            "vacationType": "Sick Vacation",
+            "date": "2/3/2023 - 10/3/2023 ",
+            "days": " 8 Days",
+            "approvedBy": "Hazem Azmi"
+        },
+        {
+            "id": 7,
+            "vacationType": "Non Paid Vacation",
+            "date": "2/3/2023 - 10/3/2023 ",
+            "days": " 8 Days",
+            "approvedBy": "Hazem Azmi"
+        }
+    ]
+
+}
+

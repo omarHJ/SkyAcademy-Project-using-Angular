@@ -1,0 +1,100 @@
+<app-navbar></app-navbar>
+
+<main class="p-3 p-sm-0">
+
+  <!--Pending requests Section-->
+  <div class="home-third-div rounded-5 mx-0 mx-lg-3 pb-2 mt-3">
+    <div class="Card-3-header d-flex justify-content-between">
+        <p class="px-3 pt-3">
+          <img src="../../assets/images/Screenshot 2024-09-01 154245.png" width="60px"> Vacations Requests
+        </p>
+        <div>  <!--Custom Pipe to highlight the search text-->
+          <form class="d-flex my-4 mx-3" style="place-items: center">
+            <input [(ngModel)]="searchTerm"              
+                   style="border: solid 1.5px gray;"
+                   id="searchInput"
+                   class="form-control rounded-5 me-2 " 
+                   type="search" 
+                   placeholder="Search..."
+                   aria-label="Search"
+                   name="Search">
+          </form>
+        </div>
+    </div>
+    <hr />
+    <div class="d-flex justify-content-between">
+      <p>
+        <label>
+          <input type="checkbox" id="MainCheckBox" name="option1" value="value1" class="mt-3 ms-4" 
+                 [checked]="selectAllChecked" 
+                 (change)="toggleSelectAll()">
+          <span style="font-size: medium;"> Select All</span>
+        </label>
+      </p>
+      <p>
+        <span class="fa-solid fa-filter fs-3 me-4 mt-2"></span>
+      </p>
+    </div>   
+    <div class="d-flex flex-row flex-wrap justify-content-center justify-content-lg-start my-3 ms-0 ms-lg-2" style="font-weight: 500;">
+      @for (vacationRequestsCard of paginatedItems; track vacationRequestsCard.id) {
+        <div class="card mx-4 mt-2 mb-5" style="width: 21rem;">
+          <label>
+            <input type="checkbox" name="option1" value="value1" 
+                   style="position: absolute; right: 0; margin: 10px"
+                   [checked]="vacationRequestsCard.selected"
+                   (change)="toggleIndividualCheckbox(vacationRequestsCard)">
+          </label>
+          <div class="card-body d-flex justify-content-between" style="width: 100%;">
+            <div>
+              <img [src]="vacationRequestsCard.imageUrl" style="width: 60px; filter: drop-shadow(1px 4px 2px)" /> 
+              <span [innerHTML]="vacationRequestsCard.name | highlight: searchTerm"></span>
+              <p class="small text-start">
+                <span [innerHTML]="vacationRequestsCard.id" ></span> <br />
+                <span style="opacity: 0.7;">Submitted on:</span> <br />
+                <span [innerHTML]="vacationRequestsCard.submittedOn | highlight: searchTerm"></span> <br />
+                <span style="opacity: 0.7;">Duration:</span> <br />
+                <span [innerHTML]="vacationRequestsCard.duration | highlight: searchTerm"></span> <br />
+                <span style="opacity: 0.7;">Salary:</span> <br />
+                <span [innerHTML]="vacationRequestsCard.salary | highlight: searchTerm"></span>
+              </p>
+            </div>
+            <div class="d-flex flex-column justify-content-end mb-3 ">
+              <button type="button" class="btn btn-outline-success py-0 px-4 mx-2 my-1">Decline</button>
+              <button type="button" class="btn btn-success py-0 px-4 mx-2 my-1">Approve</button>
+            </div>
+          </div>
+        </div>
+      } @empty {
+        <p>No items available at the moment.</p>
+      }
+    </div>
+    
+    <!-- Bootstrap pagination to move between the vacation requests pages -->
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <a class="page-link" (click)="setPage(currentPage - 1)" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        @for (i of [].constructor(totalPages); track $index) {
+          <li class="page-item">
+            <a class="page-link" (click)="setPage($index + 1)" [class.active]="currentPage === $index + 1">{{ $index + 1 }}</a>
+          </li>
+        }
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <a class="page-link" (click)="setPage(currentPage + 1)" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
+</main>
+
+<footer class="fw-bold text-center py-2">
+  <span class="fa-solid fa-copyright"></span>
+  {{ currentYear | date:'yyyy' }}             <!--Built-in Date Pipe-->
+  SkyAcademy
+</footer>

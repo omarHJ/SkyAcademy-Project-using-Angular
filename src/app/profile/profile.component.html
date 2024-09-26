@@ -1,0 +1,173 @@
+<app-navbar [isProfileBold]="isProfileBold"></app-navbar>  <!--Property Binding (One-Way)-->
+
+<main class="p-3 p-sm-0">
+
+    <!--Employee details-->
+    <div class="d-flex flex-column flex-wrap rounded-5 Card-1 my-4 mx-0 mx-md-2 mx-lg-5">
+        <div class="d-flex justify-content-between">
+            <div class="d-flex p-3" >
+                <p style="place-content: center;">
+                    <img src="../../assets/images/Screenshot 2024-09-01 150822.png" style="width: 60px; margin-right: 5px;">
+                </p>
+                <p>
+                    <span class="fw-bold">Ahmad Azmi</span>  <br />
+                    Marketing Department <br />
+                    <span class="half-obacity"> Junior Accounting Officer</span>
+                </p>
+            </div>
+            <p class="view-profile-Button-p">
+                <button class="btn btn-success px-4 px-lg-5 m-4">New Requests</button>
+            </p>
+        </div>
+        <div class="d-flex flex-wrap justify-content-between ms-3 me-4">
+            <div class="d-flex" >
+                <p class="text-nowrap" style="place-content: center">
+                    <span class="fa-solid fa-user pb-3 p-2 fs-2 mx-2 half-obacity"></span>
+                </p>
+                <p>
+                    Reporting to: <br /><span class="half-obacity"> Salwa Assem</span>
+                </p>
+            </div>
+            <div class="d-flex" >
+                <p class="text-nowrap" style="place-content: center">
+                    <img src="../../assets/images/chart-mixed-svgrepo-com.png"
+                        style="width: 45px; margin-right: 8px;" />
+                </p>
+                <p>
+                    Corporate Level: <br /><span class="half-obacity"> Level 10</span>
+                </p>
+            </div>
+            <div class="d-flex" >
+                <p class="text-nowrap" style="place-content: center">
+                    <img src="../../assets/images/Screenshot_2024-09-01_213757-removebg-preview.png" style="width: 50px;" />
+                </p>
+                <p>
+                    Liftime: <br /><span class="half-obacity"> 2.5 Years</span>
+                </p>
+            </div>
+            <div class="d-flex" >
+                <p class="text-nowrap" style="place-content: center">
+                    <img src="../../assets/images/Screenshot_2024-09-01_213753-removebg-preview.png"
+                        style="width: 52px; margin-right: 5px;" />
+                </p>
+                <p>
+                    Vacation Days Left: <br /><span class="half-obacity">
+                    {{totalVacationDays | vacationDaysLeft: vacationDaysTaken}}</span> <!--Custom Pipe-->
+                </p>
+            </div>
+            <div class="d-flex">
+                <p class="text-nowrap" style="place-content: center">
+                    <img src="../../assets/images/Screenshot_2024-09-01_213749-removebg-preview.png" style="width: 60px;" />
+                </p>
+                <p>
+                    Sick Days Left: <br /><span class="half-obacity"> 
+                    {{totalSickDays | vacationDaysLeft: sickDaysTaken}}</span> <!--Custom Pipe-->
+                </p>
+            </div>
+        </div>
+    </div>
+    <br />
+    <!--History section-->
+    <div class="home-third-div rounded-5 mx-0 mx-lg-5 ">
+        <div class="Card-3-header d-flex justify-content-between">
+          <p class="px-3 pt-3">
+            <img src="../../assets/images/Screenshot 2024-09-01 154245.png" width="60px"> History
+          </p>
+        </div>
+        <hr />   
+        <div class="d-flex flex-row flex-wrap justify-content-center justify-content-lg-start mt-3 ms-0 ms-lg-3">        
+          @for(vacationHistoryCard of vacationHistoryCards; track vacationHistoryCard.id) {
+            <div class="card m-3" style="width: 14rem;">
+              <div class="card-body">
+                <h6 [innerHTML]="vacationHistoryCard.vacationType"></h6>
+                <div class="card-text half-obacity" style="font-size: small; font-weight: 500;">
+                    <span [innerHTML]="vacationHistoryCard.date"></span> 
+                    <span [innerHTML]="vacationHistoryCard.days" class="fw-bold"> 8 Days </span> <br />
+                    <div class="mt-2">Approved by: <span [innerHTML]="vacationHistoryCard.approvedBy"> </span></div> 
+                </div>
+              </div>
+            </div>
+          } @empty {
+            <div class="text-center">
+              <p>No items available at the moment.</p>
+            </div>
+          }
+        </div>
+        
+        <div class="d-flex justify-content-end">
+          <span style="padding: 15px;">
+              <a 
+              class="fw-bold text-success text-decoration-none" 
+              style="cursor: pointer">View More ></a>
+          </span>
+        </div>
+      </div>
+    <br />
+    <!--Pending requests Section-->
+    <div class="home-third-div rounded-5 mx-0 mx-lg-5 ">
+        <div class="Card-3-header d-flex justify-content-between">
+          <p class="px-3 pt-3">
+            <img src="../../assets/images/Screenshot 2024-09-01 154245.png" width="60px"> Pending Requests
+          </p>
+        </div>
+        <hr />   
+        <div class="d-flex flex-row flex-wrap justify-content-center justify-content-lg-start text-center mt-3 ms-0 ms-lg-3">        
+          <div class="card mx-3 mt-2" style="width: 16rem;">
+            <div class="card-body">
+              <img src="../assets/images/Screenshot 2024-09-03 2119077.png" style="width: 100px; filter: drop-shadow(2px 5px 4px)" />
+              
+              <h5>Ahmad Attar</h5> <br />
+              
+              <p class="small text-start">
+                <span style="opacity: 0.7;">Submitted on:</span> <br />
+                <span>1/3/2024</span> <br />
+                
+                <span style="opacity: 0.7;">Duration:</span> <br />
+                <span>2 Weeks (1/4/2023 - 14/4/2023)</span> <br />
+                <br />
+              </p>
+              
+              <p style="text-align: left;">
+                Currently at: <br /> <span class="fw-bold" style="color: #198754;">Omar Ahmad</span>
+              </p>
+            </div>
+          </div>
+          <div class="card mx-3 mt-2" style="width: 16rem;">
+            <div class="card-body">
+              <img src="../assets/images/Screenshot 2024-09-03 2119077.png" style="width: 100px; filter: drop-shadow(2px 5px 4px)" />
+              
+              <h5>Ahmad Attar</h5><br />
+              
+              <p class="small text-start">
+                <span style="opacity: 0.7;">Submitted on:</span> <br />
+                <span>1/3/2024</span> <br />
+                
+                <span style="opacity: 0.7;">Duration:</span> <br />
+                <span>2 Weeks (1/4/2023 - 14/4/2023)</span> <br />
+                <br />
+                
+              </p>
+              
+              <p style="text-align: left;">
+                Currently at: <br /> <span class="fw-bold" style="color: #198754;">Omar Ahmad</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="d-flex justify-content-end">
+          <span style="padding: 15px;">
+              <a 
+              class="fw-bold text-success text-decoration-none" 
+              style="cursor: pointer">View More ></a>
+          </span>
+        </div>
+    </div>
+    <br />
+</main>
+
+<footer class="fw-bold text-center py-2">
+  <span class="fa-solid fa-copyright"></span>
+  {{ currentYear | date:'yyyy' }}             <!--Built-in Date Pipe-->
+  SkyAcademy
+</footer>
