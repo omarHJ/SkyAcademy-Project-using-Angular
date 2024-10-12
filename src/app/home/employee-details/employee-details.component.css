@@ -1,0 +1,14 @@
+.Card-1 {
+    max-width: 100%;
+    width: 700px;
+}
+
+@media (max-width: 768px) {
+    
+    .Card-1-profile-div {
+        width: 100%;
+        margin: auto;
+        place-content: center;
+    }
+
+}

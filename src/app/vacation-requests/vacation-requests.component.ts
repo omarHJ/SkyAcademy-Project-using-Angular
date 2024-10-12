@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { HighlightPipe } from '../highlight.pipe';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { VacationCardsComponent } from "../vacation-cards/vacation-cards.component";
+import { PaginationComponent } from './pagination/pagination.component';
 
 @Component({
   selector: 'app-vacation-requests',
   standalone: true,
-  imports: [NavbarComponent, CommonModule, HighlightPipe, FormsModule, HttpClientModule],
+  imports: [NavbarComponent, CommonModule, HighlightPipe, FormsModule, HttpClientModule, VacationCardsComponent, PaginationComponent],
   templateUrl: './vacation-requests.component.html',
   styleUrls: ['./vacation-requests.component.css']
 })
@@ -17,6 +19,7 @@ export class VacationRequestsComponent implements OnInit {
   searchTerm: string = '';
   vacationRequestsCards: any[] = [];
   
+  isRequestsBold = true
   
   itemsPerPage = 12; 
   currentPage = 1;

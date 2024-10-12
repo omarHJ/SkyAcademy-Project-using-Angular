@@ -1,0 +1,20 @@
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center" style="cursor: pointer;">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="setPage(currentPage - 1)" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      @for (i of [].constructor(totalPages); track $index) {
+        <li class="page-item">
+          <a class="page-link" (click)="setPage($index + 1)" [class.active]="currentPage === $index + 1">{{ $index + 1 }}</a>
+        </li>
+      }
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <a class="page-link" (click)="setPage(currentPage + 1)" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  

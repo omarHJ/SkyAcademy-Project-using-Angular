@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  @Input() isHomeBold: boolean = false; 
-  @Input() isProfileBold: boolean = false;
+  @Input() isHomeBold: boolean = false
+  @Input() isProfileBold: boolean = false
+  @Input() isRequestsBold: boolean = false
 }

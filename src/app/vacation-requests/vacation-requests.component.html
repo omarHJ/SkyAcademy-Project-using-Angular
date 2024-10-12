@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<app-navbar [isRequestsBold]="isRequestsBold"></app-navbar>
 
 <main class="p-3 p-sm-0">
 
@@ -34,61 +34,27 @@
       <p>
         <span class="fa-solid fa-filter fs-3 me-4 mt-2"></span>
       </p>
-    </div>   
+    </div>
     <div class="d-flex flex-row flex-wrap justify-content-center justify-content-lg-start my-3 ms-0 ms-lg-2" style="font-weight: 500;">
-      @for (vacationRequestsCard of paginatedItems; track vacationRequestsCard.id) {
-        <div class="card mx-4 mt-2 mb-5" style="width: 21rem;">
-          <label>
-            <input type="checkbox" name="option1" value="value1" 
-                   style="position: absolute; right: 0; margin: 10px"
-                   [checked]="vacationRequestsCard.selected"
-                   (change)="toggleIndividualCheckbox(vacationRequestsCard)">
-          </label>
-          <div class="card-body d-flex justify-content-between" style="width: 100%;">
-            <div>
-              <img [src]="vacationRequestsCard.imageUrl" style="width: 60px; filter: drop-shadow(1px 4px 2px)" /> 
-              <span [innerHTML]="vacationRequestsCard.name | highlight: searchTerm"></span>
-              <p class="small text-start">
-                <span [innerHTML]="vacationRequestsCard.id" ></span> <br />
-                <span style="opacity: 0.7;">Submitted on:</span> <br />
-                <span [innerHTML]="vacationRequestsCard.submittedOn | highlight: searchTerm"></span> <br />
-                <span style="opacity: 0.7;">Duration:</span> <br />
-                <span [innerHTML]="vacationRequestsCard.duration | highlight: searchTerm"></span> <br />
-                <span style="opacity: 0.7;">Salary:</span> <br />
-                <span [innerHTML]="vacationRequestsCard.salary | highlight: searchTerm"></span>
-              </p>
-            </div>
-            <div class="d-flex flex-column justify-content-end mb-3 ">
-              <button type="button" class="btn btn-outline-success py-0 px-4 mx-2 my-1">Decline</button>
-              <button type="button" class="btn btn-success py-0 px-4 mx-2 my-1">Approve</button>
-            </div>
-          </div>
-        </div>
+      @for (vacationRequestCard of paginatedItems; track vacationRequestCard.id) {
+        <app-vacation-cards 
+          [vacationRequestCard]="vacationRequestCard"
+          (toggleCheckbox)="toggleIndividualCheckbox(vacationRequestCard)"
+          [searchTerm]="searchTerm">
+        </app-vacation-cards>
       } @empty {
         <p>No items available at the moment.</p>
       }
     </div>
     
+    
     <!-- Bootstrap pagination to move between the vacation requests pages -->
-    <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center">
-        <li class="page-item" [class.disabled]="currentPage === 1">
-          <a class="page-link" (click)="setPage(currentPage - 1)" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        @for (i of [].constructor(totalPages); track $index) {
-          <li class="page-item">
-            <a class="page-link" (click)="setPage($index + 1)" [class.active]="currentPage === $index + 1">{{ $index + 1 }}</a>
-          </li>
-        }
-        <li class="page-item" [class.disabled]="currentPage === totalPages">
-          <a class="page-link" (click)="setPage(currentPage + 1)" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <app-pagination 
+      [currentPage]="currentPage" 
+      [totalPages]="totalPages" 
+      (pageChange)="setPage($event)">
+    </app-pagination>
+
 
   </div>
 </main>

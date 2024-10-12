@@ -1,0 +1,28 @@
+<div class="card mx-4 mt-2 mb-5" style="width: 21rem;">
+    <label>
+      <input type="checkbox" name="option1" value="value1" 
+             style="position: absolute; right: 0; margin: 10px"
+             [checked]="vacationRequestCard.selected"
+             (change)="onCheckboxChange()">
+    </label>
+    <div class="card-body d-flex justify-content-between" style="width: 100%;">
+      <div>
+        <img [src]="vacationRequestCard.imageUrl" style="width: 60px; filter: drop-shadow(1px 4px 2px)" /> 
+        <span [innerHTML]="vacationRequestCard.name | highlight: searchTerm"> </span>
+        <p class="small text-start">
+          <span [innerHTML]="vacationRequestCard.id"></span> <br />
+          <span style="opacity: 0.7;">Submitted on:</span> <br />
+          <span [innerHTML]="(vacationRequestCard.submittedOn | date:'MM/dd/yyyy') ?? 'N/A' | highlight: searchTerm"></span> <br /> 
+          <span style="opacity: 0.7;">Duration:</span> <br />
+          <span [innerHTML]="vacationRequestCard.duration | highlight: searchTerm"></span> <br />
+          <span style="opacity: 0.7;">Salary:</span> <br />
+          <span [innerHTML]="vacationRequestCard.salary | highlight: searchTerm"></span>
+        </p>
+      </div>
+      <div class="d-flex flex-column justify-content-end mb-3">
+        <button type="button" class="btn btn-outline-success py-0 px-4 mx-2 my-1" >Decline</button>
+        <button type="button" class="btn btn-success py-0 px-4 mx-2 my-1" >Approve</button>
+      </div>
+    </div>
+  </div>
+  
